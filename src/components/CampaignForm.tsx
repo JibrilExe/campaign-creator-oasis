@@ -22,7 +22,7 @@ const CampaignForm: React.FC<CampaignFormProps> = ({
 }) => {
   const [showLogos, setShowLogos] = useState(false);
   const [campaignValues, setCampaignValues] = useState<CampaignFormValues>({
-    environment: '',
+    season: '',
     position: '',
     stance: '',
     image: ''
@@ -30,7 +30,7 @@ const CampaignForm: React.FC<CampaignFormProps> = ({
 
   const [extraCampaignValues, setExtraCampaignValues] = useState<ExtraCampaignFormValues>({
     color: '',
-    style: ''
+    scenery: ''
   });
   
   const [formStep, setFormStep] = useState(0);
@@ -133,19 +133,19 @@ const CampaignForm: React.FC<CampaignFormProps> = ({
                       />
                     </div>
                   </StaggerItem>
-                  <StaggerItem key="style">
+                  <StaggerItem key="scenery">
                     <div className="space-y-2">
                       <label htmlFor="color" className="block text-sm font-medium capitalize">
-                        Style
+                        Scenery
                       </label>
                       <select
-                        id="style"
-                        name="style"
+                        id="scenery"
+                        name="scenery"
                         value={extraCampaignValues.color}
-                        onChange={(e) => setExtraCampaignValues({ ...extraCampaignValues, style: e.target.value })}
+                        onChange={(e) => setExtraCampaignValues({ ...extraCampaignValues, scenery: e.target.value })}
                         className="form-select"
                       >
-                        <option value="">Select a style...</option>
+                        <option value="">Select a scenery...</option>
                         <option value="University">University</option>
                         <option value="Space">Space</option>
                         <option value="Business">Business</option>
@@ -155,11 +155,11 @@ const CampaignForm: React.FC<CampaignFormProps> = ({
                         <option value="Office">Office</option>
                       </select>
                       <Input
-                        id="customStyle"
-                        name="customStyle"
-                        placeholder="Or enter a custom style..."
-                        value={extraCampaignValues.style}
-                        onChange={(e) => setExtraCampaignValues({ ...extraCampaignValues, style: e.target.value })}
+                        id="customScenery"
+                        name="customScenery"
+                        placeholder="Or enter a custom scenery..."
+                        value={extraCampaignValues.scenery}
+                        onChange={(e) => setExtraCampaignValues({ ...extraCampaignValues, scenery: e.target.value })}
                         className="form-input mt-2"
                       />
                     </div>

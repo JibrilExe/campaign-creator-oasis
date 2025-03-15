@@ -1,6 +1,6 @@
 
 export interface CampaignFormValues {
-  environment: string;
+  season: string;
   position: string;
   stance: string;
   image: string;
@@ -8,7 +8,7 @@ export interface CampaignFormValues {
 
 export interface ExtraCampaignFormValues {
   color: string;
-  style: string;
+  scenery: string;
 }
 
 
