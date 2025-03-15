@@ -10,14 +10,14 @@ const Index = () => {
   // This would normally come from your API or import
   // For now, we'll use placeholder images
   const logoOptions: ImageOption[] = Array.from({ length: 9 }, (_, i) => ({
-    id: `logo-${i + 1}`,
-    src: `https://via.placeholder.com/200x200?text=Logo+${i + 1}`,
+    id: `mask-${i + 1}`,
+    src: `./mask${i + 1}.png`,
     alt: `Logo Option ${i + 1}`
   }));
   
   const designOptions: ImageOption[] = Array.from({ length: 8 }, (_, i) => ({
     id: `design-${i + 1}`,
-    src: `https://via.placeholder.com/400x300?text=Design+${i + 1}`,
+    src: `output${i + 1}.png`,
     alt: `Design Option ${i + 1}`
   }));
   
@@ -34,7 +34,7 @@ const Index = () => {
           <Header 
             title="Campaign Creator" 
             subtitle="Design your perfect marketing campaign"
-            logoSrc="https://via.placeholder.com/200x200?text=Hey+Logo"
+            logoSrc="./heylogo.png"
           />
           
           <CampaignForm

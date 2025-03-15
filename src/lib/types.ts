@@ -6,6 +6,12 @@ export interface CampaignFormValues {
   image: string;
 }
 
+export interface ExtraCampaignFormValues {
+  color: string;
+  style: string;
+}
+
+
 export interface FeedbackFormValues {
   image: string;
   feedback: string;

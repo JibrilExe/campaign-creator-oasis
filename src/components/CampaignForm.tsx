@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { FadeIn, SlideUp, StaggerContainer, StaggerItem } from '@/lib/animations';
-import { ImageOption, CampaignFormValues, FeedbackFormValues } from '@/lib/types';
+import { ImageOption, CampaignFormValues, ExtraCampaignFormValues, FeedbackFormValues } from '@/lib/types';
 import ImageGrid from './ImageGrid';
 import FeedbackForm from './FeedbackForm';
 import { toast } from 'sonner';
@@ -26,6 +26,11 @@ const CampaignForm: React.FC<CampaignFormProps> = ({
     position: '',
     stance: '',
     image: ''
+    });
+
+  const [extraCampaignValues, setExtraCampaignValues] = useState<ExtraCampaignFormValues>({
+    color: '',
+    style: ''
   });
   
   const [formStep, setFormStep] = useState(0);
@@ -46,11 +51,7 @@ const CampaignForm: React.FC<CampaignFormProps> = ({
   const handleSubmitInitial = (e: React.FormEvent) => {
     e.preventDefault();
     // Validate at least environment and position are filled
-    if (!campaignValues.environment || !campaignValues.position) {
-      toast.error('Please fill in at least the environment and position fields.');
-      return;
-    }
-    
+  
     setFormStep(1);
     toast.success('Initial campaign details submitted successfully!');
   };
@@ -87,7 +88,7 @@ const CampaignForm: React.FC<CampaignFormProps> = ({
               
               <form onSubmit={handleSubmitInitial} className="space-y-6">
                 <StaggerContainer>
-                  {['environment', 'position', 'stance'].map((field, index) => (
+                  {Object.keys(campaignValues).map((field) => (
                     <StaggerItem key={field}>
                       <div className="space-y-2">
                         <label htmlFor={field} className="block text-sm font-medium capitalize">
@@ -104,6 +105,65 @@ const CampaignForm: React.FC<CampaignFormProps> = ({
                       </div>
                     </StaggerItem>
                   ))}
+                  <StaggerItem key="color">
+                    <div className="space-y-2">
+                      <label htmlFor="color" className="block text-sm font-medium capitalize">
+                        Color
+                      </label>
+                      <select
+                        id="color"
+                        name="color"
+                        value={extraCampaignValues.color}
+                        onChange={(e) => setExtraCampaignValues({ ...extraCampaignValues, color: e.target.value })}
+                        className="form-select"
+                      >
+                        <option value="">Select a color...</option>
+                        <option value="#FF5733">Red</option>
+                        <option value="#33FF57">Green</option>
+                        <option value="#3357FF">Blue</option>
+                        <option value="#F3FF33">Yellow</option>
+                      </select>
+                      <Input
+                        id="customColor"
+                        name="customColor"
+                        placeholder="Or enter a custom hex color..."
+                        value={extraCampaignValues.color}
+                        onChange={(e) => setExtraCampaignValues({ ...extraCampaignValues, color: e.target.value })}
+                        className="form-input mt-2"
+                      />
+                    </div>
+                  </StaggerItem>
+                  <StaggerItem key="style">
+                    <div className="space-y-2">
+                      <label htmlFor="color" className="block text-sm font-medium capitalize">
+                        Style
+                      </label>
+                      <select
+                        id="style"
+                        name="style"
+                        value={extraCampaignValues.color}
+                        onChange={(e) => setExtraCampaignValues({ ...extraCampaignValues, style: e.target.value })}
+                        className="form-select"
+                      >
+                        <option value="">Select a style...</option>
+                        <option value="University">University</option>
+                        <option value="Space">Space</option>
+                        <option value="Business">Business</option>
+                        <option value="Playground">Playground</option>
+                        <option value="Spring">Spring</option>
+                        <option value="Christmass">Christmass</option>
+                        <option value="Office">Office</option>
+                      </select>
+                      <Input
+                        id="customStyle"
+                        name="customStyle"
+                        placeholder="Or enter a custom style..."
+                        value={extraCampaignValues.style}
+                        onChange={(e) => setExtraCampaignValues({ ...extraCampaignValues, style: e.target.value })}
+                        className="form-input mt-2"
+                      />
+                    </div>
+                  </StaggerItem>
                 </StaggerContainer>
 
                 <FadeIn delay={0.3}>
@@ -113,7 +173,7 @@ const CampaignForm: React.FC<CampaignFormProps> = ({
                     onClick={toggleShowLogos}
                     className="w-full mb-4"
                   >
-                    {showLogos ? "Hide Optional Logo Choices" : "Show Optional Logo Choices"}
+                    {showLogos ? "Hide Optional Stances" : "Show Optional Stances"}
                   </Button>
                 </FadeIn>
 
@@ -130,9 +190,9 @@ const CampaignForm: React.FC<CampaignFormProps> = ({
                     </FadeIn>
                   )}
                 </AnimatePresence>
-
+                
                 <FadeIn delay={0.4}>
-                  <Button type="submit" className="w-full btn-primary">
+                  <Button type="submit" onClick={handleSubmitInitial} className="w-full btn-primary">
                     Submit Campaign Details
                   </Button>
                 </FadeIn>
@@ -144,7 +204,7 @@ const CampaignForm: React.FC<CampaignFormProps> = ({
         {formStep === 1 && (
           <FeedbackForm
             key="first-feedback"
-            images={designOptions.slice(0, 4)}
+            images={designOptions.slice(0, 2)}
             onSubmit={handleFirstFeedbackSubmit}
             title="Select Your Preferred Design"
           />
