@@ -1,13 +1,59 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React from 'react';
+import { motion } from 'framer-motion';
+import CampaignForm from '@/components/CampaignForm';
+import Header from '@/components/Header';
+import { PageTransition } from '@/lib/animations';
+import { ImageOption } from '@/lib/types';
 
 const Index = () => {
+  // This would normally come from your API or import
+  // For now, we'll use placeholder images
+  const logoOptions: ImageOption[] = Array.from({ length: 9 }, (_, i) => ({
+    id: `logo-${i + 1}`,
+    src: `https://via.placeholder.com/200x200?text=Logo+${i + 1}`,
+    alt: `Logo Option ${i + 1}`
+  }));
+  
+  const designOptions: ImageOption[] = Array.from({ length: 8 }, (_, i) => ({
+    id: `design-${i + 1}`,
+    src: `https://via.placeholder.com/400x300?text=Design+${i + 1}`,
+    alt: `Design Option ${i + 1}`
+  }));
+  
+  const finalOptions: ImageOption[] = Array.from({ length: 4 }, (_, i) => ({
+    id: `final-${i + 1}`,
+    src: `https://via.placeholder.com/500x400?text=Final+${i + 1}`,
+    alt: `Final Design ${i + 1}`
+  }));
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <PageTransition>
+      <div className="min-h-screen bg-gradient-to-b from-background to-secondary/30">
+        <div className="container px-4 py-8 mx-auto">
+          <Header 
+            title="Campaign Creator" 
+            subtitle="Design your perfect marketing campaign"
+            logoSrc="https://via.placeholder.com/200x200?text=Hey+Logo"
+          />
+          
+          <CampaignForm
+            logoOptions={logoOptions}
+            designOptions={designOptions}
+            finalOptions={finalOptions}
+          />
+          
+          <motion.footer
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8 }}
+            className="text-center text-sm text-muted-foreground mt-12"
+          >
+            <p>© 2023 Campaign Creator. All rights reserved.</p>
+          </motion.footer>
+        </div>
       </div>
-    </div>
+    </PageTransition>
   );
 };
 
