@@ -3,7 +3,6 @@ export interface CampaignFormValues {
   season: string;
   position: string;
   stance: string;
-  image: string;
 }
 
 export interface ExtraCampaignFormValues {

@@ -64,6 +64,28 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ images, onSubmit, title }) 
             </div>
           </SlideUp>
 
+          <SlideUp delay={0.35}>
+            <Button
+              type="button"
+              className="w-full btn-secondary"
+              onClick={() => {
+                let selected = values.image;
+                if (selected) {
+                  selected = `/outputs/${selected}.png`; // Ensure it's accessible via server
+                  const link = document.createElement('a');
+                  link.href = selected;
+                  link.download = 'selected-image.png'; // Include the file extension
+                  document.body.appendChild(link); // Append to the body
+                  link.click();
+                  document.body.removeChild(link); // Cleanup
+                }
+              }}
+              disabled={!values.image}
+            >
+              Download Image
+            </Button>
+          </SlideUp>
+
           <SlideUp delay={0.4}>
             <Button 
               type="submit" 

@@ -11,20 +11,14 @@ const Index = () => {
   // For now, we'll use placeholder images
   const logoOptions: ImageOption[] = Array.from({ length: 9 }, (_, i) => ({
     id: `mask-${i + 1}`,
-    src: `./mask${i + 1}.png`,
+    src: `./masks/mask${i + 1}.png`,
     alt: `Logo Option ${i + 1}`
   }));
   
   const designOptions: ImageOption[] = Array.from({ length: 8 }, (_, i) => ({
     id: `design-${i + 1}`,
-    src: `output${i + 1}.png`,
+    src: `./outputs/output${i + 1}.png`,
     alt: `Design Option ${i + 1}`
-  }));
-  
-  const finalOptions: ImageOption[] = Array.from({ length: 4 }, (_, i) => ({
-    id: `final-${i + 1}`,
-    src: `https://via.placeholder.com/500x400?text=Final+${i + 1}`,
-    alt: `Final Design ${i + 1}`
   }));
 
   return (
@@ -40,7 +34,6 @@ const Index = () => {
           <CampaignForm
             logoOptions={logoOptions}
             designOptions={designOptions}
-            finalOptions={finalOptions}
           />
           
           <motion.footer
