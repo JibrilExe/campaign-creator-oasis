@@ -22,7 +22,8 @@ const CombinedForm: React.FC<CombinedFormProps> = ({
       season: '',
       position: '',
       stance: '',
-      });
+      extra_prompt: ''
+    });
   
     const [extraCampaignValues, setExtraCampaignValues] = useState<ExtraCampaignFormValues>({
       color: '',

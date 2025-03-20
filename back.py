@@ -11,7 +11,18 @@ def receive_json():
     Handle JSON POST requests and CORS preflight requests.
     """
     data = request.get_json()
-    print(data)  # Print received JSON
+    
+    # Extract specific keys from the received JSON
+    season = data.get('season', '')
+    position = data.get('position', '')
+    stance = data.get('stance', '')
+    extra_prompt = data.get('extra_prompt', '')
+    color = data.get('color', '')
+    scenery = data.get('scenery', '')
+    
+    # Print extracted values
+    print(f"Season: {season}, Position: {position}, Stance: {stance}, Extra Prompt: {extra_prompt}, Color: {color}, Scenery: {scenery}")
+    
     return jsonify(data), 200  # Return HTTP 200 OK
 
 if __name__ == "__main__":
