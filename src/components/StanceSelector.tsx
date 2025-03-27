@@ -11,6 +11,22 @@ interface StanceSelectorProps {
     setCampaignValues: (values: CampaignFormValues) => void;
 }
 
+const stanceTagMapping: Record<string, string> = {
+    "mask-1": "S1SA",
+    "mask-2": "K43P",
+    "mask-3": "P3M2",
+    "mask-4": "W21G",
+    "mask-5": "KYR4",
+    "mask-6": "T1UP",
+    "mask-7": "H0I2",
+    "mask-8": "L7YU",
+    "mask-9": "F12G",
+};
+
+const reverseStanceTagMapping = Object.fromEntries(
+    Object.entries(stanceTagMapping).map(([key, value]) => [value, key])
+);
+
 class StanceSelector extends Component<StanceSelectorProps> {
     render() {
         const { showLogos, logoOptions, campaignValues, setCampaignValues } = this.props;
@@ -22,8 +38,8 @@ class StanceSelector extends Component<StanceSelectorProps> {
                         <div className="mt-4">
                             <ImageGrid
                                 images={logoOptions}
-                                selectedImage={campaignValues.stance}
-                                onSelect={(imageId) => setCampaignValues({ ...campaignValues, stance: imageId })}
+                                selectedImage={reverseStanceTagMapping[campaignValues.stance] || ""}
+                                onSelect={(imageId) => setCampaignValues({ ...campaignValues, stance: stanceTagMapping[imageId] })}
                             />
                         </div>
                     </FadeIn>

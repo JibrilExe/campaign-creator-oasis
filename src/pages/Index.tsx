@@ -30,7 +30,7 @@ const Index = () => {
             subtitle="Design your perfect marketing campaign"
             logoSrc="./heylogo.png"
           />
-          
+          <p>If you use extra_prompt, other fields will be ignored and you get to try your own prompting skills, to refer the finetuned stances, click on the optional stances button below and select one, the unique id that you can use to refer it will be displayed in the stance field.</p>
           <CampaignForm
             logoOptions={logoOptions}
             designOptions={designOptions}
@@ -42,7 +42,6 @@ const Index = () => {
             transition={{ delay: 0.8 }}
             className="text-center text-sm text-muted-foreground mt-12"
           >
-            <p>© 2023 Campaign Creator. All rights reserved.</p>
           </motion.footer>
         </div>
       </div>

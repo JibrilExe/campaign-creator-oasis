@@ -71,13 +71,14 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ images, onSubmit, title }) 
               onClick={() => {
                 let selected = values.image;
                 if (selected) {
-                  selected = `/outputs/${selected}.png`; // Ensure it's accessible via server
+                  selected = `uploads/output${selected}.png`;
+                  console.log(selected)
                   const link = document.createElement('a');
                   link.href = selected;
-                  link.download = 'selected-image.png'; // Include the file extension
-                  document.body.appendChild(link); // Append to the body
+                  link.download = 'selected-image.png';
+                  document.body.appendChild(link);
                   link.click();
-                  document.body.removeChild(link); // Cleanup
+                  document.body.removeChild(link);
                 }
               }}
               disabled={!values.image}
