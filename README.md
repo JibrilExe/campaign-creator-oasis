@@ -1,6 +1,6 @@
-# Welcome to your Lovable project
+# Welcome to Hey! campaign creatore
 
-## Project info
+# Hosting the web app:
 
 ```sh
 # Make sure you have npm and that you are in root of project
@@ -35,3 +35,14 @@ We wait for generated images from flux api, once they are downloaded we put them
 Frontend is hardcoded to display images on feedback form from this folder once backend returns ok status code.
 Feedback form allows user to ask the flux model to improve a given image.
 Until user is statisfied we reload feedback form, at the bottom is a download button for selected image.
+
+# Training of the model:
+
+Trainingdata folder contains stance images and background images.
+With the combine.py script you can combine the masks onto the backgrounds to create a training set per stance.
+make_captions.py uses hardcoded dictionary to build caption files.
+train_api.py is a way to start a replicate training in python.
+
+Required libraries:
+- pillow (for combine.py)
+- replicate (for train_api.py)
