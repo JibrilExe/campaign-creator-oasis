@@ -1,6 +1,10 @@
-# Welcome to Hey! campaign creatore
+# Welcome to Hey! campaign creator
+This project was originally created as demo for during the Hey! hackathon in 2025.
+But it was later extended to connect to an actual fine tuned image gen model.
 
 # Hosting the web app:
+This will only work with a valid replicate token set in the backend!
+**For security reasons the hardcoded replicate token is currently disabled.**
 
 ```sh
 # Make sure you have npm and that you are in root of project
@@ -17,27 +21,30 @@ pip install -r requirements.txt
 # Run the backend
 python back.py
 ```
-## What technologies are used for this project?
 
-This project is built with .
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-- Flask
+# How it looks:
+## Form page
+Here you can fill out the form for your desired campaign
+![form](image.png)
 
-## How it works:
+Optionally the stance can be chosen by using the selector
+![stances](image-1.png)
 
-Frontend provides a form to setup queries which are sent to backend.
-Backend transforms query into a prompt for flux api where we host our finetuned flux model.
-We wait for generated images from flux api, once they are downloaded we put them in uploads folder.
-Frontend is hardcoded to display images on feedback form from this folder once backend returns ok status code.
+## Feedback page
+![alt text](image-2.png)
+
+## Some results from the used model
+https://docs.google.com/document/d/1guQX7zPvMgS_qlnUV6Ve2pz3v15Rg6Osl1CpXYC4cbM/edit?tab=t.0
+
+# How it works:
+The frontend provides a form to setup queries which are sent to our backend.
+The backend transforms input queries into a prompt for the flux api where we host our finetuned flux model.
+We wait for generated images from flux api, once they are downloaded we put them in the uploads folder.
+Once backend returns ok status code, the frontend will look for the images in this folder.
 Feedback form allows user to ask the flux model to improve a given image.
-Until user is statisfied we reload feedback form, at the bottom is a download button for selected image.
+Until user is statisfied we reload feedback form, at the bottom there is a download button for the selected image.
 
 # Training of the model:
-
 Trainingdata folder contains stance images and background images.
 With the combine.py script you can combine the masks onto the backgrounds to create a training set per stance.
 make_captions.py uses hardcoded dictionary to build caption files.
